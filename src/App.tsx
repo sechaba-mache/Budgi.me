@@ -6,10 +6,9 @@ import 'swiper/css/pagination';
 import Card from './components/card/card'
 import Drawer from './components/drawer/drawer';
 import { useEffect, useRef } from 'react';
+import Tile from './components/tile/tile';
 
 function App() {
-  const pageRef = useRef(null);
-
   return (
     <>      
         <Swiper
@@ -22,7 +21,15 @@ function App() {
             <SwiperSlide><Card></Card><span>February</span></SwiperSlide>
         </Swiper>
 
-        <Drawer></Drawer>
+        <Drawer>
+          <Tile></Tile>
+          <Tile></Tile>
+          <Tile></Tile>
+          <Tile></Tile>
+          <Tile></Tile>
+          <Tile></Tile>
+          <Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile><Tile></Tile>
+        </Drawer>
     </>
   )
 }

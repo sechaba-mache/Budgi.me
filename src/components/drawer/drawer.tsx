@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from 'react';
 import './drawer.css'
 
 type drawerStates = "OPENED" | "CLOSED"
 
-export default function Drawer() {
+export default function Drawer(props: { children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) {
     const [currentDrawerState, setDrawerState] = useState<drawerStates>("CLOSED")
     const drawerElement = useRef();
 
@@ -33,6 +33,9 @@ export default function Drawer() {
         <div className='drawer' ref={drawerElement}>
             <div className='gripper' onClick={() => openDrawer()}>
                 <div className='bar'></div>
+            </div>
+            <div className='px-4 pb-5'>
+                {props.children}
             </div>
         </div>
     </>
