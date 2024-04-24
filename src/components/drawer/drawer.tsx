@@ -2,10 +2,13 @@ import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect,
 import './drawer.css'
 
 type drawerStates = "OPENED" | "CLOSED"
+type animation = "animateClose" | "animateOpen"
 
 export default function Drawer(props: { children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) {
     const [currentDrawerState, setDrawerState] = useState<drawerStates>("CLOSED")
     const drawerElement = useRef();
+    const openAnimation: animation =  "animateOpen";
+    const closeAnimation: animation =  "animateClose"
 
     useEffect(() => {}, [])
 
@@ -19,13 +22,32 @@ export default function Drawer(props: { children: string | number | boolean | Re
 
     function animateDrawer() {
         if(drawerElement.current) {
+            const classToRemove = animationToRemove();
+
+            if(classToRemove) {
+                (drawerElement.current as HTMLElement).classList.remove(classToRemove);
+            }
+
             if(currentDrawerState === "OPENED") {
-                (drawerElement.current as HTMLElement).className = "drawer animateClose";
+                (drawerElement.current as HTMLElement).classList.add(closeAnimation);
             }
             else {
-                (drawerElement.current as HTMLElement).className = "drawer animateOpen";
+                (drawerElement.current as HTMLElement).classList.add(openAnimation);
             }
         }
+    }
+
+    function animationToRemove() {
+        if(drawerElement.current) {
+
+            if((drawerElement.current as HTMLElement).classList.contains(openAnimation))
+                return openAnimation;
+
+            else if((drawerElement.current as HTMLElement).classList.contains(closeAnimation))
+                return closeAnimation;
+
+        }
+        return undefined;
     }
 
     return (
