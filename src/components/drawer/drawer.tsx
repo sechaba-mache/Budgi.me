@@ -1,10 +1,10 @@
-import { JSXElementConstructor, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './drawer.css'
 
 type drawerStates = "OPENED" | "CLOSED"
 type animation = "animateClose" | "animateOpen"
 
-export default function Drawer(props: { children: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) {
+export default function Drawer(props: { header?: JSX.Element, content: JSX.Element }) {
     const [currentDrawerState, setDrawerState] = useState<drawerStates>("CLOSED")
     const drawerElement = useRef();
     const openAnimation: animation =  "animateOpen";
@@ -52,12 +52,17 @@ export default function Drawer(props: { children: string | number | boolean | Re
 
     return (
     <>
-        <div className='drawer flex flex-col w-full h-[95%] rounded-t-[22px] bg-white absolute z-50 overflow-y-scroll' ref={drawerElement}>
-            <div className='flex items-center justify-center min-h-8 w-full h-8 sticky top-0 bg-white' onClick={() => openDrawer()}>
-                <div className='bar w-14 h-2 rounded-lg bg-[#023047]'></div>
+        <div className='drawer shadow-[rgba(0,0,0,0.24)_8px_-2px_8px] flex flex-col w-full h-[95%] rounded-t-[22px] bg-white absolute z-50 overflow-y-scroll' ref={drawerElement}>
+            <div className='flex items-center justify-center min-h-10 w-full sticky top-0 bg-white' onClick={() => openDrawer()}>
+                <div className='w-14 h-2 rounded-lg bg-[#023047]'></div>
+                <div className='flex gap-1 absolute right-5 top-5'>
+                    <img src="./src/assets/icons/pen-solid.svg" />
+                    <span className='font-semibold text-xs text-[#8ECAE6]'>Edit</span>
+                </div>
             </div>
             <div className='px-4 pb-5'>
-                {props.children}
+                {props.header}
+                {props.content}
             </div>
         </div>
     </>
