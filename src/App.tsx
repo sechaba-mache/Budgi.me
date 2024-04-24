@@ -35,9 +35,27 @@ function App() {
           slidesPerView={1}
           pagination={{ clickable: true, type: 'bullets' }}
           >
-            <SwiperSlide><Card></Card><span>February</span></SwiperSlide>
-            <SwiperSlide><Card></Card><span>February</span></SwiperSlide>
-            <SwiperSlide><Card></Card><span>February</span></SwiperSlide>
+            <SwiperSlide>
+              <Card></Card>
+              <div className='flex flex-col items-center'>
+                <span className='font-semibold text-lg'>February</span>
+                <span className='font-semibold text-xs'>Current</span>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Card></Card>
+              <div className='flex flex-col items-center'>
+                <span className='font-semibold text-lg'>February</span>
+                <span className='font-semibold text-xs'>Current</span>
+              </div>
+            </SwiperSlide>
+            <SwiperSlide>
+              <Card></Card>
+              <div className='flex flex-col items-center'>
+                <span className='font-semibold text-lg'>February</span>
+                <span className='font-semibold text-xs'>Current</span>
+              </div>
+            </SwiperSlide>
         </Swiper>
 
         <Drawer
